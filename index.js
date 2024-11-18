@@ -9,9 +9,11 @@ app.use(express.json());
 // Question 1: Add a "Priority" Field to the To-Do API
 // Sample data
 let todos = [
-  { id: 1, task: "Learn Node.js", completed: false },
-  { id: 2, task: "Build a REST API", completed: false }
+  { id: 1, task: "Learn Node.js", completed: false, priority: "medium" },
+  { id: 2, task: "Build a REST API", completed: false, priority: "medium" }
 ];
+
+// added parameter priority to the data, default medium
 
 // GET /todos - Retrieve all to-do items
 app.get('/todos', (req, res) => {
