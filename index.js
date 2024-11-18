@@ -16,10 +16,10 @@ let todos = [
 // added parameter priority to the data, default medium
 
 // GET /todos - Retrieve all to-do items
-app.get('/todos', (req, res) => {
-  res.json(todos);
-});
-
+//app.get('/todos', (req, res) => {
+//  res.json(todos);
+//});
+// commented out as per request
 
 /* 
 Q.3"
@@ -27,7 +27,17 @@ GET /todos - Retrieve all to-do items or filter by completed status.
 after completing this part, you need to comment out the GET end point 
 already implemented here to test this new GET endpoint! 
 */
-
+app.get('/todos', (req, res) => {
+    let {completed} = req.query
+    if (completed === 'true' || completed === 'false') { // triple equal is strict equality, both true and false is there cuz that is expected
+        let doneCompleted = completed === 'true'; // string input turned into boolean
+        let filteredByCompleted = todos.filter(item => item.completed === doneCompleted) // completed field matches, then it goes here
+        res.json(filteredByCompleted); // return completed list
+    }
+    else {
+    res.json(todos); // this is from method before, default behaviour of just returning
+    }
+  });
 
 
 // POST /todos - Add a new to-do item
