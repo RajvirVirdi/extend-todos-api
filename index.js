@@ -59,6 +59,14 @@ example usage:
 curl -X PUT http://localhost:3000/todos/complete-all
 */
 
+app.put('/todos/completeall', (req,res) => {
+    if (!todos) {
+        return res.status(404).send("no items found"); // in case there is nothing in the list, let it be known
+    }
+    todos.forEach(item => {item.completed=true}) //set everything to completed state
+    res.status(200).send(); // tell client all is ok
+});
+
 
 // DELETE /todos/:id - Delete a to-do item
 app.delete('/todos/:id', (req, res) => {
